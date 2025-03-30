@@ -2,7 +2,7 @@
 
 namespace root;
 
-ini_set('memory_limit', '10M');
+//ini_set('memory_limit', '10M');
 set_time_limit(360);
 
 require_once __DIR__ . '/vendor/autoload.php';

@@ -8,7 +8,7 @@ use Doctrine\ODM\MongoDB\MongoDBException;
 use src\app\repository\models\Post;
 use Throwable;
 use MongoDB\Driver\Cursor;
-use Doctrine\ODM\MongoDB\Iterator\CachingIterator;
+use Doctrine\ODM\MongoDB\Iterator\Iterator;
 
 class PostsRepository {
 
@@ -52,11 +52,14 @@ class PostsRepository {
     /**
      * @throws MongoDBException
      */
-    public function getAllPostsIterator(): CachingIterator
+    public function getAllPostsIterator(): Iterator
     {
         $job  =
             $this->mongoDbDocumentManager
             ->createQueryBuilder(Post::class)
+            //->hydrate(false)
+            ->setRewindable(false)
+            ->readonly()
             ->find();
         return $job->getQuery()->execute();
     }

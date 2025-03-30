@@ -35,7 +35,9 @@ $target = new PostsRepository($dm);
 
 $resultsIterator = $target->getAllPostsIterator();
 
-foreach ($resultsIterator as $document) {
-   echo $document->title;
-   $dm->clear();
+while($resultsIterator->valid()) {
+    $document = $resultsIterator->current();
+    echo $document->title;
+    $resultsIterator->next();
+
 }
