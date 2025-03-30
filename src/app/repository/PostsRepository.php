@@ -5,7 +5,7 @@ require_once "models/Post.php";
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\MongoDBException;
-use src\repository\models\Post;
+use src\app\repository\models\Post;
 use Throwable;
 
 class PostsRepository {
@@ -23,7 +23,7 @@ class PostsRepository {
     {
         $job  =
             $this->mongoDbDocumentManager
-            ->createQueryBuilder(User::class)
+            ->createQueryBuilder(Post::class)
             ->find();
         $result = $job->getQuery()->execute();
         return $result->toArray();

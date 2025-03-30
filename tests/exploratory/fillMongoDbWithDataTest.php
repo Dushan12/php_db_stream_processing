@@ -11,7 +11,7 @@ use Doctrine\ODM\MongoDB\Mapping\Driver\AttributeDriver;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use MongoDB\Client;
 use PHPUnit\Framework\TestCase;
-use src\app\repository\models\User;
+use src\app\repository\models\Post;
 use src\app\repository\PostsRepository;
 
 final class fillMongoDbWithDataTest extends TestCase
@@ -47,7 +47,7 @@ final class fillMongoDbWithDataTest extends TestCase
     {
         $target = new PostsRepository($this->dm);
         $target->deleteAllPosts();
-        $input = new Post('', 'Post Body', 'Post Title');
+        $input = new Post('Post Body', 'Post Title');
         $target->savePost($input);
         $actual  = $target->getAllPosts();
         $firstElement = $actual[0];
@@ -55,7 +55,7 @@ final class fillMongoDbWithDataTest extends TestCase
         $this->assertSame($arrayLength, 1);
         $this->assertSame($firstElement->body,'Post Body');
         $this->assertSame($firstElement->title, 'Post Title');
-        $target = new UsersRepository($this->dm);
+        $target = new PostsRepository($this->dm);
         $deleteResult = $target->deleteAllPosts();
         $this->assertSame($deleteResult, 1);
     }
