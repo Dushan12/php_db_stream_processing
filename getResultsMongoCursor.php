@@ -33,9 +33,8 @@ $dm = DocumentManager::create($client, $config);
 
 $target = new PostsRepository($dm);
 
-$resultsIterator = $target->getAllPostsIterator();
+$resultsIterator = $target->getAllPostsCursor();
 
 foreach ($resultsIterator as $document) {
-   echo $document->title;
-   $dm->clear();
+   echo $document["title"];
 }
