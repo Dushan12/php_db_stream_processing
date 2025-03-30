@@ -1,7 +1,7 @@
 <?php
-namespace src\repository;
+namespace src\app\repository;
 
-require_once "models/Posts.php";
+require_once "models/Post.php";
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\MongoDBException;

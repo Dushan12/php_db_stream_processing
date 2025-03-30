@@ -2,8 +2,8 @@
 
 namespace exploratory;
 
-include_once(__DIR__."/../../src/repository/PostsRepository.php");
-include_once(__DIR__."/../../src/repository/models/User.php");
+include_once(__DIR__."/../../src/app/repository/PostsRepository.php");
+include_once(__DIR__."/../../src/app/repository/models/Post.php");
 
 use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\DocumentManager;
@@ -11,8 +11,8 @@ use Doctrine\ODM\MongoDB\Mapping\Driver\AttributeDriver;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use MongoDB\Client;
 use PHPUnit\Framework\TestCase;
-use src\repository\models\User;
-use src\repository\PostsRepository;
+use src\app\repository\models\User;
+use src\app\repository\PostsRepository;
 
 final class fillMongoDbWithDataTest extends TestCase
 {
@@ -21,16 +21,16 @@ final class fillMongoDbWithDataTest extends TestCase
 
     protected function setUp(): void
     {
-        /* $config = new Configuration();
-        $config->setProxyDir(__DIR__ . '/../../src/repository/Proxies');
+        $config = new Configuration();
+        $config->setProxyDir(__DIR__ . '/../../src/app/repository/Proxies');
         $config->setProxyNamespace('Proxies');
-        $config->setHydratorDir(__DIR__ . '/../../src/repository/Hydrators');
+        $config->setHydratorDir(__DIR__ . '/../../src/app/repository/Hydrators');
         $config->setHydratorNamespace('Hydrators');
         $config->setDefaultDB('stream_processing');
-        $config->setMetadataDriverImpl(AttributeDriver::create(__DIR__ . '/../../src/repository/Documents'));
+        $config->setMetadataDriverImpl(AttributeDriver::create(__DIR__ . '/../../src/app/repository/Documents'));
         $connectionString = "mongodb://127.0.0.1:27017";
         $client = new Client($connectionString);
-        $this->dm = DocumentManager::create($client, $config); */
+        $this->dm = DocumentManager::create($client, $config);
     }
 
     protected function tearDown(): void
@@ -45,8 +45,8 @@ final class fillMongoDbWithDataTest extends TestCase
      */
     public function testUsersRepositoryCrudUsersTest()
     {
-/*         $target = new PostsRepository($this->dm);
-        $target->deleteAllUsers();
+        $target = new PostsRepository($this->dm);
+        $target->deleteAllPosts();
         $input = new Post('', 'Post Body', 'Post Title');
         $target->savePost($input);
         $actual  = $target->getAllPosts();
@@ -56,8 +56,8 @@ final class fillMongoDbWithDataTest extends TestCase
         $this->assertSame($firstElement->body,'Post Body');
         $this->assertSame($firstElement->title, 'Post Title');
         $target = new UsersRepository($this->dm);
-        $deleteResult = $target->deleteAllUsers(); */
-        $this->assertSame(1, 1);
+        $deleteResult = $target->deleteAllPosts();
+        $this->assertSame($deleteResult, 1);
     }
 
 }
