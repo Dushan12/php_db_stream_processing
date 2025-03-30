@@ -34,3 +34,11 @@ sudo apt install phpunit
 
 // install mongodb extension
 sudo pecl install mongodb
+
+// Even if you use iterator the memory in the process is filled
+// you must use DocumentManager->flush(); to clean the data from the iterator
+
+
+// PHP set_timeout limits the execution of the script itself
+// While cloud front response timeout is only if the response for first byte is larger than the limit
+// PHP magic

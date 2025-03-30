@@ -7,6 +7,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use src\app\repository\models\Post;
 use Throwable;
+use Doctrine\ODM\MongoDB\Iterator\Iterator;
 
 class PostsRepository {
 
@@ -28,6 +29,21 @@ class PostsRepository {
         $result = $job->getQuery()->execute();
         return $result->toArray();
     }
+
+    /**
+     * @throws MongoDBException
+     */
+    public function getAllPostsIterator(): Iterator
+    {
+        $job  =
+            $this->mongoDbDocumentManager
+            ->createQueryBuilder(Post::class)
+            ->find();
+        return $job->getQuery()->execute();
+    }
+
+
+
 
     /**
      * @throws MongoDBException
