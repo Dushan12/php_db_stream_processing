@@ -1,0 +1,36 @@
+// install symfony cli on ubuntu
+curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
+sudo apt install symfony-cli
+
+// install XDebug
+sudo apt install php-xdebug
+
+Update your php.ini file (located in the PHP installation directory) to include:
+
+[Xdebug]
+zend_extension="ext\\php_xdebug.dll"
+xdebug.mode=debug
+xdebug.start_with_request=yes
+xdebug.client_host=127.0.0.1
+xdebug.client_port=9003
+
+// xdebug dumps are found in:
+/tmp/cachegrind
+
+// start the server with profiling option
+$ XDEBUG_MODE=profile php -S localhost:8000
+
+// for visual preview of the xdebug dumps
+$ sudo snap install kcachegrind
+
+// install mongodb for php
+sudo pecl install mongodb
+
+// enable the mongodb extension in php.ini
+extension=mongodb.so
+
+// install php unit
+sudo apt install phpunit
+
+// install mongodb extension
+sudo pecl install mongodb
