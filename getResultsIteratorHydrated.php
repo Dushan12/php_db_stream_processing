@@ -33,8 +33,8 @@ $dm = DocumentManager::create($client, $config);
 
 $target = new PostsRepository($dm);
 
-$resultsIterator = $target->getAllPostsIterator();
+$resultsIterator = $target->getAllPostsIteratorHydrated();
 
 foreach($resultsIterator as $document) {
-    echo $document["title"];
+    echo $document->title;
 }

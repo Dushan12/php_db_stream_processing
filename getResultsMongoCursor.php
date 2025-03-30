@@ -2,7 +2,7 @@
 
 namespace root;
 
-//ini_set('memory_limit', '10M');
+ini_set('memory_limit', '10M');
 set_time_limit(360);
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -33,8 +33,8 @@ $dm = DocumentManager::create($client, $config);
 
 $target = new PostsRepository($dm);
 
-$resultsIterator = $target->getAllPostsCursor();
+$resultsCursor = $target->getAllPostsCursor();
 
-foreach ($resultsIterator as $document) {
-   echo $document["title"];
+foreach($resultsCursor as $document) {
+    echo $document["title"];
 }

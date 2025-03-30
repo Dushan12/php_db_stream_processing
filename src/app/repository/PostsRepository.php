@@ -36,16 +36,9 @@ class PostsRepository {
      */
     public function getAllPostsCursor(): Cursor
     {
-
         $mongoCollection = $this->mongoDbDocumentManager->getDocumentCollection(Post::class);
-
         $cursor = $mongoCollection->find([], ['typeMap' => ['root' => 'array', 'document' => 'array']]);
         return $cursor;
-/*         $job  =
-            $this->mongoDbDocumentManager
-            ->createQueryBuilder(Post::class)
-            ->find();
-        return $job->getQuery()->execute(); */
     }
 
 
@@ -57,7 +50,21 @@ class PostsRepository {
         $job  =
             $this->mongoDbDocumentManager
             ->createQueryBuilder(Post::class)
-            //->hydrate(false)
+            ->hydrate(false)
+            ->setRewindable(false)
+            ->readonly()
+            ->find();
+        return $job->getQuery()->execute();
+    }
+
+    /**
+     * @throws MongoDBException
+     */
+    public function getAllPostsIteratorHydrated(): Iterator
+    {
+        $job  =
+            $this->mongoDbDocumentManager
+            ->createQueryBuilder(Post::class)
             ->setRewindable(false)
             ->readonly()
             ->find();

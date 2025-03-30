@@ -42,3 +42,10 @@ sudo pecl install mongodb
 // PHP set_timeout limits the execution of the script itself
 // While cloud front response timeout is only if the response for first byte is larger than the limit
 // PHP magic
+
+
+// title
+http://localhost:8000/getResultsFull.php
+http://localhost:8000/getResultsIterator.php
+http://localhost:8000/getResultsIteratorHydrated.php
+http://localhost:8000/getResultsMongoCursor.php
