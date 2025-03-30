@@ -1,0 +1,9 @@
+{
+    "require": {
+        "ext-mongodb": "^1.21",
+        "mongodb/mongodb": "^1.21",
+        "jenssegers/mongodb": "^5.2",
+        "doctrine/mongodb-odm-bundle": "^5.2",
+        "doctrine/dbal": "^4.2"
+    }
+}
